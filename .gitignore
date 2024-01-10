@@ -1,4 +1,4 @@
 /DataStructuresAndAlgorithm/.vs/*
 /DataStructuresAndAlgorithm/x64/*
-/DataStructuresAndAlgorithm/RemoveElements/x64/*
+/DataStructuresAndAlgorithm/*/x64/*
 *.user
