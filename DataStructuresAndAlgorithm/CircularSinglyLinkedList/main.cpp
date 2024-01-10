@@ -53,6 +53,25 @@ public:
         ++size;
     }
 
+    void insertAtBeg( int data ) {
+        Node* newNode = new Node( data );
+        if( head == nullptr ) {
+            head = newNode;
+            newNode->next = head;
+        }
+        else {
+            newNode->next = head;
+
+            Node* temp = head;
+            for( int i = 0; i < size - 1; ++i ) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+            head = newNode;
+        }
+        ++size;
+    }
+
     void display() {
         if( head == nullptr ) {
             std::cout << "List is empty" << std::endl;
@@ -83,6 +102,14 @@ int main() {
     std::cout << "InsertAtEnd( 5 ): " << std::endl;
     cl.insertAtEnd( 5 );
     cl.display();
+
+    std::cout << "InsertAtBeg( 5 ): " << std::endl;
+    cl.insertAtBeg( 0 );
+    cl.display();
+
+    //std::cout << "DeleteAtEnd(): " << std::endl;
+    //cl.deleteAtEnd();
+    //cl.display();
 
     system( "pause" );
     return 0;
