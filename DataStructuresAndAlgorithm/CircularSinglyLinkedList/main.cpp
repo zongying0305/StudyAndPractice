@@ -72,8 +72,100 @@ public:
         ++size;
     }
 
-    void display() {
+    void insertAtIndex( int data, int index ) {
+        if( index < 0 ) {
+            std::cout << "Invalid index" << std::endl;
+            return;
+        }
+        Node* newNode = new Node( data );
+        if( index == 0 ) {
+            head = newNode;
+            newNode->next = head;
+            ++size;
+        }
+        else {
+            Node* temp = head;
+            for( int i = 0; i < index-1; ++i ) {
+                temp = temp->next;
+            }
+            newNode->next = temp->next;
+            temp->next = newNode;
+            ++size;
+        }
+    }
+
+    void deleteAtEnd() {
         if( head == nullptr ) {
+            std::cout << "List is empty" << std::endl;
+            return;
+        }
+        else if( size == 1 ) {
+            delete head;
+            head = nullptr;
+            --size;
+        }
+        else {
+            Node* temp = head;
+            for( int i = 0; i < size - 2; ++i ) {
+                temp = temp->next;
+            }
+            delete temp->next;
+            temp->next = head;
+            --size;
+        }
+    }
+
+    void deleteAtBeg() {
+        if( size == 0 ) {
+            std::cout << "List is empty" << std::endl;
+            return;
+        }
+        else if( size == 1 ) {
+            delete head;
+            head = nullptr;
+            --size;
+        }
+        else {
+            Node* temp = head;
+            for( int i = 0; i < size - 1; ++i ) {
+                temp = temp->next;
+            }
+            head = head->next;
+            delete temp->next;
+            temp->next = head;
+            --size;
+        }
+    }
+
+    void deleteAtIndex( int index ) {
+        if( index < 0 ) {
+            std::cout << "Invalid index" << std::endl;
+            return;
+        }
+        if( size == 0 ) {
+            std::cout << "List is empty" << std::endl;
+            return;
+        }
+        else if( size == 1 ) {
+            delete head;
+            head = nullptr;
+            --size;
+        }
+        else {
+            Node* temp = head;
+            for( int i = 0; i < index - 1; ++i )
+            {
+                temp = temp->next;
+            }
+            Node* next = temp->next->next;
+            delete temp->next;
+            temp->next = next;
+            --size;
+        }       
+    }
+
+    void display() {
+        if( size == 0 ) {
             std::cout << "List is empty" << std::endl;
         }
 
@@ -103,13 +195,25 @@ int main() {
     cl.insertAtEnd( 5 );
     cl.display();
 
-    std::cout << "InsertAtBeg( 5 ): " << std::endl;
+    std::cout << "InsertAtBeg( 0 ): " << std::endl;
     cl.insertAtBeg( 0 );
     cl.display();
 
-    //std::cout << "DeleteAtEnd(): " << std::endl;
-    //cl.deleteAtEnd();
-    //cl.display();
+    std::cout << "DeleteAtEnd(): " << std::endl;
+    cl.deleteAtEnd();
+    cl.display();
+
+    std::cout << "DeleteAtBeg(): " << std::endl;
+    cl.deleteAtBeg();
+    cl.display();
+
+    std::cout << "InsertAtIndex( 3, 2 )" << std::endl;
+    cl.insertAtIndex( 3, 2 );
+    cl.display();
+
+    std::cout << "DeleteAtIndex( 1 )" << std::endl;
+    cl.deleteAtIndex( 1 );
+    cl.display();
 
     system( "pause" );
     return 0;
