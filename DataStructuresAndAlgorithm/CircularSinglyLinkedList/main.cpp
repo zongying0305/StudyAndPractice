@@ -7,8 +7,7 @@
 
 #include <iostream>
 
-class Node
-{
+class Node {
 public:
     Node( int data ) {
         this->data = data;
@@ -18,8 +17,7 @@ public:
     Node* next;
 };
 
-class CircularSinglyLinkedList
-{
+class CircularSinglyLinkedList {
 public:
     CircularSinglyLinkedList() {
         head = nullptr;
@@ -28,9 +26,9 @@ public:
 
     ~CircularSinglyLinkedList() {
         Node* temp = head;
-        for( int i = 0; i < size; ++i ) {
+        for ( int i = 0; i < size; ++i ) {
             head = head->next;
-            if( temp != nullptr )
+            if ( temp != nullptr )
                 delete temp;
             temp = head;
         }
@@ -38,13 +36,13 @@ public:
 
     void insertAtEnd( int data ) {
         Node* newNode = new Node( data );
-        if( head == nullptr ) {
+        if ( head == nullptr ) {
             head = newNode;
             newNode->next = head;
         }
         else {
             Node* temp = head;
-            for( int i = 0; i < size - 1; ++i ) {
+            for ( int i = 0; i < size - 1; ++i ) {
                 temp = temp->next;
             }
             temp->next = newNode;
@@ -55,7 +53,7 @@ public:
 
     void insertAtBeg( int data ) {
         Node* newNode = new Node( data );
-        if( head == nullptr ) {
+        if ( head == nullptr ) {
             head = newNode;
             newNode->next = head;
         }
@@ -63,7 +61,7 @@ public:
             newNode->next = head;
 
             Node* temp = head;
-            for( int i = 0; i < size - 1; ++i ) {
+            for ( int i = 0; i < size - 1; ++i ) {
                 temp = temp->next;
             }
             temp->next = newNode;
@@ -73,19 +71,19 @@ public:
     }
 
     void insertAtIndex( int data, int index ) {
-        if( index < 0 ) {
+        if ( index < 0 ) {
             std::cout << "Invalid index" << std::endl;
             return;
         }
         Node* newNode = new Node( data );
-        if( index == 0 ) {
+        if ( index == 0 ) {
             head = newNode;
             newNode->next = head;
             ++size;
         }
         else {
             Node* temp = head;
-            for( int i = 0; i < index-1; ++i ) {
+            for ( int i = 0; i < index - 1; ++i ) {
                 temp = temp->next;
             }
             newNode->next = temp->next;
@@ -95,18 +93,18 @@ public:
     }
 
     void deleteAtEnd() {
-        if( head == nullptr ) {
+        if ( head == nullptr ) {
             std::cout << "List is empty" << std::endl;
             return;
         }
-        else if( size == 1 ) {
+        else if ( size == 1 ) {
             delete head;
             head = nullptr;
             --size;
         }
         else {
             Node* temp = head;
-            for( int i = 0; i < size - 2; ++i ) {
+            for ( int i = 0; i < size - 2; ++i ) {
                 temp = temp->next;
             }
             delete temp->next;
@@ -116,18 +114,18 @@ public:
     }
 
     void deleteAtBeg() {
-        if( size == 0 ) {
+        if ( size == 0 ) {
             std::cout << "List is empty" << std::endl;
             return;
         }
-        else if( size == 1 ) {
+        else if ( size == 1 ) {
             delete head;
             head = nullptr;
             --size;
         }
         else {
             Node* temp = head;
-            for( int i = 0; i < size - 1; ++i ) {
+            for ( int i = 0; i < size - 1; ++i ) {
                 temp = temp->next;
             }
             head = head->next;
@@ -138,22 +136,22 @@ public:
     }
 
     void deleteAtIndex( int index ) {
-        if( index < 0 ) {
+        if ( index < 0 ) {
             std::cout << "Invalid index" << std::endl;
             return;
         }
-        if( size == 0 ) {
+        if ( size == 0 ) {
             std::cout << "List is empty" << std::endl;
             return;
         }
-        else if( size == 1 ) {
+        else if ( size == 1 ) {
             delete head;
             head = nullptr;
             --size;
         }
         else {
             Node* temp = head;
-            for( int i = 0; i < index - 1; ++i )
+            for ( int i = 0; i < index - 1; ++i )
             {
                 temp = temp->next;
             }
@@ -161,16 +159,16 @@ public:
             delete temp->next;
             temp->next = next;
             --size;
-        }       
+        }
     }
 
     void display() {
-        if( size == 0 ) {
+        if ( size == 0 ) {
             std::cout << "List is empty" << std::endl;
         }
 
         Node* temp = head;
-        for( int i = 0; i < size; ++i ) {
+        for ( int i = 0; i < size; ++i ) {
             std::cout << temp->data << "-->";
             temp = temp->next;
         }

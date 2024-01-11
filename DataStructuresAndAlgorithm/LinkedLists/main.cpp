@@ -6,8 +6,7 @@ we consider a node with two properties
 
 #include <iostream>
 
-class Node
-{
+class Node {
 public:
     Node( int data ) {
         this->data = data;
@@ -17,8 +16,7 @@ public:
     Node* next;
 };
 
-class LinkedList
-{
+class LinkedList {
 public:
     LinkedList() {
         head = nullptr;
@@ -28,9 +26,9 @@ public:
 
     ~LinkedList() {
         Node* temp = head;
-        for( int i = 0; i < size; ++i ) {
+        for ( int i = 0; i < size; ++i ) {
             head = head->next;
-            if( temp != nullptr )
+            if ( temp != nullptr )
                 delete temp;
             temp = head;
         }
@@ -39,7 +37,7 @@ public:
     void append( int element ) {
         Node* newNode = new Node( element );
 
-        if( head == nullptr ) {
+        if ( head == nullptr ) {
             head = newNode;
             tail = newNode;
             ++size;
@@ -54,7 +52,7 @@ public:
     void preAppend( int element ) {
         Node* newNode = new Node( element );
 
-        if( head == nullptr ) {
+        if ( head == nullptr ) {
             head = newNode;
             tail = newNode;
             ++size;
@@ -67,18 +65,18 @@ public:
     }
 
     void insertNode( int element, int pos ) {
-        if( pos < 0 ) {
+        if ( pos < 0 ) {
             std::cout << "Invalid pos" << std::endl;
         }
-        else if( pos == 0 ) {
+        else if ( pos == 0 ) {
             preAppend( element );
         }
-        else if( pos >= size ) {
+        else if ( pos >= size ) {
             append( element );
         }
         else {
             Node* prev = head;
-            for( int i = 0; i < pos - 1; i++ )
+            for ( int i = 0; i < pos - 1; i++ )
             {
                 prev = prev->next;
             }
@@ -92,10 +90,10 @@ public:
     }
 
     void removeNode( int pos ) {
-        if( pos < 0 || pos >= size ) {
+        if ( pos < 0 || pos >= size ) {
             std::cout << "Invalid pos" << std::endl;
         }
-        else if( pos == 0 ) {
+        else if ( pos == 0 ) {
             Node* tmp = head;
             head = head->next;
             free( tmp );
@@ -103,7 +101,7 @@ public:
         }
         else {
             Node* prev = head;
-            for( int i = 0; i < pos - 1; i++ )
+            for ( int i = 0; i < pos - 1; i++ )
             {
                 prev = prev->next;
             }
@@ -117,14 +115,14 @@ public:
     }
 
     int get( int pos ) {
-        if( pos < 0 || pos >= size ) {
+        if ( pos < 0 || pos >= size ) {
             std::cout << "Invalid pos" << std::endl;
             return -1;
         }
         else
         {
             Node* tmp = head;
-            for( int i = 0; i < pos; i++ )
+            for ( int i = 0; i < pos; i++ )
             {
                 tmp = tmp->next;
             }
@@ -134,9 +132,9 @@ public:
 
     int find( int element ) {
         Node* tmp = head;
-        for( int i = 0; i < size; ++i )
+        for ( int i = 0; i < size; ++i )
         {
-            if( tmp->data == element ) {
+            if ( tmp->data == element ) {
                 return i;
             }
             tmp = tmp->next;
@@ -146,12 +144,12 @@ public:
     }
 
     void display() {
-        if( head == nullptr ) {
+        if ( head == nullptr ) {
             std::cout << "List is empty" << std::endl;
         }
 
         Node* temp = head;
-        for( int i = 0; i < size; ++i ) {
+        for ( int i = 0; i < size; ++i ) {
             std::cout << temp->data << "-->";
             temp = temp->next;
         }

@@ -14,8 +14,7 @@
 #include <cstring>
 #include <iostream>
 
-class DynamicArray
-{
+class DynamicArray {
 public:
     DynamicArray() {
         capacity = 1;
@@ -34,9 +33,9 @@ public:
 
     int pop( int index ) {
         int element = 0;
-        if( index >= 0 && index < totalNumbers ) {
+        if ( index >= 0 && index < totalNumbers ) {
             element = arr[index];
-            for( int i = index; i < totalNumbers - 1; ++i ) {
+            for ( int i = index; i < totalNumbers - 1; ++i ) {
                 arr[i] = arr[i + 1];
             }
             --totalNumbers;
@@ -45,7 +44,7 @@ public:
     }
 
     void push( int data ) {
-        if( totalNumbers == capacity ) {
+        if ( totalNumbers == capacity ) {
             int* temp = new int[2 * capacity];
             memcpy( temp, arr, sizeof( int ) * capacity );
             delete[] arr;
@@ -59,11 +58,11 @@ public:
     }
 
     void insertElement( int data, int index ) {
-        if( index == capacity ) {
+        if ( index == capacity ) {
             push( data );
         }
 
-        for( int i = totalNumbers; i > index; i-- ) {
+        for ( int i = totalNumbers; i > index; i-- ) {
             arr[i] = arr[i - 1];
         }
 
@@ -72,7 +71,7 @@ public:
     }
 
     void print() {
-        for( int i = 0; i < totalNumbers; ++i ) {
+        for ( int i = 0; i < totalNumbers; ++i ) {
             std::cout << arr[i] << " ";
         }
         std::cout << std::endl;
