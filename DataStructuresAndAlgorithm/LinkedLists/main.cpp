@@ -143,8 +143,29 @@ public:
         return -1;
     }
 
+    void reverse() {
+        if ( size <= 1 ) {
+            return;
+        }
+
+        Node* previous = nullptr;
+        Node* current = head;
+        Node* next = head->next;
+        for ( int i = 0; i < size - 1; ++i ) {
+            current->next = previous;
+
+            previous = current;
+            current = next;
+            next = next->next;
+        }
+        current->next = previous;
+
+        tail = head;
+        head = current;
+    }
+
     void display() {
-        if ( head == nullptr ) {
+        if ( size == 0 ) {
             std::cout << "List is empty" << std::endl;
         }
 
@@ -203,6 +224,10 @@ int main() {
     std::cout << l.find( 8 ) << std::endl;
     std::cout << "Find Node 9:" << std::endl;
     std::cout << l.find( 9 ) << std::endl;
+
+    std::cout << "Reversing List" << std::endl;
+    l.reverse();
+    l.display();
 
     system( "pause" );
     return 0;
